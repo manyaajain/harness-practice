@@ -1,0 +1,35 @@
+pipeline:
+  name: test-nodejs-template2
+  identifier: testnodejstemplate2
+  tags: {}
+  template:
+    templateRef: nodejscitemplate
+    versionLabel: v1.001
+    templateInputs:
+      variables:
+        - name: IMAGE_REPO
+          type: String
+          value: <+input>
+        - name: NODE_VERSION
+          type: String
+          value: <+input>
+      properties:
+        ci:
+          codebase:
+            connectorRef: <+input>
+            repoName: <+input>
+            build: <+input>
+      stages:
+        - stage:
+            identifier: pushimage
+            type: CI
+            spec:
+              execution:
+                steps:
+                  - step:
+                      identifier: pushtogithub
+                      type: BuildAndPushDockerRegistry
+                      spec:
+                        connectorRef: <+input>
+  projectIdentifier: default_project
+  orgIdentifier: default
