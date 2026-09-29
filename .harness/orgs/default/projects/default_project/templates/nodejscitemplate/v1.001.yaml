@@ -10,7 +10,7 @@ template:
         value: <+input>
       - name: NODE_VERSION
         type: String
-        value: <+input>.default(22)
+        value: <+input>
     properties:
       ci:
         codebase:
